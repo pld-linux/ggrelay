@@ -21,7 +21,7 @@
 -    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/ggrelay
 +	if [ ! -f /var/lock/subsys/ggrelay ]; then
 +	    msg_starting "GGrelay"
-+	    daemon ggrelay -d /etc/ggrelay/ggrelay.conf
++	    daemon ggrelay -d "$(cat /etc/ggrelay/ggrelay.conf)"
 +	    RETVAL=$?
 +	    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/ggrelay
 +	else
