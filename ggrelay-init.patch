@@ -1,29 +1,30 @@
---- ggrelay-1.0-rc5A/scripts/ggrelay.orig	2004-02-07 19:17:12.000000000 +0100
-+++ ggrelay-1.0-rc5A/scripts/ggrelay	2004-02-07 20:23:18.000000000 +0100
-@@ -3,28 +3,35 @@
+--- ggrelay-1.4/scripts/ggrelay.orig	2005-01-19 23:58:47.000000000 +0100
++++ ggrelay-1.4/scripts/ggrelay	2005-01-20 06:32:28.000000000 +0100
+@@ -3,6 +3,8 @@
  # chkconfig: - 90 25
  # description: Gadu-Gadu relaying agent (proxy) daemon
  
-+[ -f /etc/ggrelay/ggrelay.conf ] || exit 0
++[ -f /etc/sysconfig/ggrelay ] || exit 0
 +
  # Source function library.
  . /etc/rc.d/init.d/functions
  
-+
- RETVAL=0
+@@ -43,22 +45,27 @@
+ }
  
  start() {
 -    echo -n $"Starting ggrelay: "
--    daemon --check ggrelay xargs ggrelay -d \
--		< /etc/ggrelay/ggrelay.conf
+-	prepare_parms
+-    daemon ggrelay $GGRELAY_PARMS
 -    RETVAL=$?
 -    echo
 -    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/ggrelay
 +	if [ ! -f /var/lock/subsys/ggrelay ]; then
-+	    msg_starting "GGrelay"
-+	    daemon ggrelay -d "$(cat /etc/ggrelay/ggrelay.conf)"
-+	    RETVAL=$?
-+	    [ $RETVAL -eq 0 ] && touch /var/lock/subsys/ggrelay
++		msg_starting "GGrelay"
++		prepare_parms
++		daemon ggrelay $GGRELAY_PARMS
++		RETVAL=$?
++		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/ggrelay
 +	else
 +		msg_already_running "GGrelay"
 +	fi
@@ -38,14 +39,14 @@
 -        rm -f /var/lock/subsys/ggrelay
 -    fi
 +	if [ -f /var/lock/subsys/ggrelay ]; then
-+	  	msg_stopping "GGrelay"
++		msg_stopping "GGrelay"
 +		busy
 +		killproc ggrelay
-+        	rm -f /var/lock/subsys/ggrelay > /dev/null 2>&1
++		rm -f /var/lock/subsys/ggrelay > /dev/null 2>&1
 +		ok
-+   	else
++	else
 +		msg_not_running "GGrelay"
-+	fi	
++	fi
  }
  
  # See how we were called.
