@@ -1,4 +1,4 @@
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obs³ug± DCC
 Name:		ggrelay
@@ -23,7 +23,7 @@ intended to be the solution.
 
 %description -l pl
 Ta ma³a aplikacja jest prostym agentem przekazuj±cym GG. Oznacza to,
-¿e pozwala na u¿ywanie transerów plików pomiêdzy u¿ytkownikami
+¿e pozwala na u¿ywanie transferów plików pomiêdzy u¿ytkownikami
 Gadu-Gadu, którzy schowani s± za NAT-em (aka maskarad±).
 
 %prep
@@ -51,10 +51,14 @@ if [ -f /var/lock/subsys/ggrelay ]; then
 	/etc/rc.d/init.d/ggrelay restart 1>&2
 else
 	echo
-	echo "Installation completed. Please adjust your /etc/ggrelay/ggrelay.conf"
-	echo "adding -o and possibly -i parameters."
-	echo "Then run \"/etc/rc.d/init.d/ggrelay start\" to start daemon."
+	echo "Installation completed."
 	echo
+	echo "1. Please adjust your /etc/ggrelay/ggrelay.conf adding -o and possibly -i parameters."
+	echo "2. Run \"/etc/rc.d/init.d/ggrelay start\" to start daemon."
+	echo "3. Finally setup iptables to redirect connections:"
+	echo "   \$ iptables -t nat -A PREROUTING -p tcp --dport 8074 -j REDIRECT"
+	echo "   \$ iptables -I FORWARD -o <external iface> -d 217.17.41.0/24 -p+tcp --dport 443 -j REJECT"
+
 fi
 
 %preun
