@@ -1,4 +1,4 @@
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obs³ug± DCC
 Name:		ggrelay
@@ -71,7 +71,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README COPYING
+%doc README
 %attr(755,root,root) %{_sbindir}/ggrelay
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggrelay
 %attr(754,root,root) /etc/rc.d/init.d/ggrelay
