@@ -1,4 +1,4 @@
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obs³ug± DCC
 Name:		ggrelay
@@ -27,7 +27,7 @@ Ta ma³a aplikacja jest prostym agentem przekazuj±cym GG. Oznacza to,
 Gadu-Gadu, którzy schowani s± za NAT-em (aka maskarad±).
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 %patch0 -p1
 
 %build
