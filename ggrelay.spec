@@ -1,13 +1,13 @@
-# $Revision: 1.6 $
+# $Revision: 1.7 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obs³ug± DCC
 Name:		ggrelay
-Version:	1.2
-Release:	0
+Version:	1.4
+Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	8b1d71e4d2769147a0a6760d3124048a
+# Source0-md5:	46e1d32d2e809083a9fc8bfe9eb45b47
 Patch0:		%{name}-init.patch
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
@@ -52,7 +52,7 @@ else
 	echo
 	echo "Installation completed."
 	echo
-	echo "1. Please adjust your /etc/ggrelay/ggrelay.conf adding -o and possibly -i parameters."
+	echo "1. Please adjust your /etc/sysconfig/ggrelay adding -o and possibly -i parameters."
 	echo "2. Run \"/etc/rc.d/init.d/ggrelay start\" to start daemon."
 	echo "3. Finally setup iptables to redirect connections:"
 	echo "   \$ iptables -t nat -A PREROUTING -p tcp --dport 8074 -j REDIRECT"
@@ -70,7 +70,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README*
 %attr(755,root,root) %{_sbindir}/ggrelay
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggrelay
+%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/ggrelay
 %attr(754,root,root) /etc/rc.d/init.d/ggrelay
