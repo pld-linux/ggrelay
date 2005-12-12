@@ -1,4 +1,4 @@
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obs³ug± DCC
 Name:		ggrelay
@@ -6,12 +6,12 @@ Version:	1.4
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/ggrelay/%{name}-%{version}.tar.gz
 # Source0-md5:	46e1d32d2e809083a9fc8bfe9eb45b47
 URL:		http://ggrelay.sourceforge.net/
 Patch0:		%{name}-init.patch
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,5 +73,5 @@ fi
 %defattr(644,root,root,755)
 %doc README*
 %attr(755,root,root) %{_sbindir}/ggrelay
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/ggrelay
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/ggrelay
 %attr(754,root,root) /etc/rc.d/init.d/ggrelay
