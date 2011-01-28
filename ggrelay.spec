@@ -1,4 +1,3 @@
-# $Revision: 1.12 $
 Summary:	ggrelay - Gadu-Gadu instant messenger transparent proxy with DCC support
 Summary(pl.UTF-8):	ggrelay - przezroczyste proxy dla komunikatora Gadu-Gadu z obsługą DCC
 Name:		ggrelay
@@ -6,7 +5,7 @@ Version:	1.4
 Release:	0.1
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://dl.sourceforge.net/ggrelay/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/ggrelay/%{name}-%{version}.tar.gz
 # Source0-md5:	46e1d32d2e809083a9fc8bfe9eb45b47
 URL:		http://ggrelay.sourceforge.net/
 Patch0:		%{name}-init.patch
