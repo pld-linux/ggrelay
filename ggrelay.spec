@@ -27,7 +27,7 @@ Gadu-Gadu, którzy schowani są za NAT-em (aka maskaradą).
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %configure \
